@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .wrapper{
+        position: relative; /* static을 만들어진 뒤 이동 */
+        width: 220px;
+        height: 340px;
+        left: 100px;
+        top: 100px;
+        border: 1px solid red;
+    }
+
+    .panel{
+        position:absolute;  /* 부모(relative) 왼쪽 모서리 기준으로 움직임 */
+        border: 1px solid blue;
+        /*
+        left: 100px;
+        top: 100px; 
+        */
+    }
+</style>
+<script>
+    // 오늘의 과제
+    var v_layers;   // 아직 해당 태그가 안 만들어져서 전역변수 선언만함
+    var v_text;     
+
+    //window.onload 이벤트 자동 발생 시점은 html태그가 모두 해석이 끝나고
+    //페이지 내의 이미지 로딩까지 끝나면 발생.
+    window.onload = function() {
+        v_layers = document.querySelectorAll(".panel");
+        v_text = document.querySelector("#id_text");
+        v_text.value = 1 + "/" + v_layers.length;
+        f_nextAuto();
+    }
+
+    var v_lIndex = 0;
+   
+    function f_initZindex(p_layers){
+        for(var i=0; i<p_layers.length; i++){
+            p_layers[i].style.zIndex = 1;
+        }
+    }
+    
+    function f_nextAuto(){
+        f_next();
+        setTimeout(f_nextAuto, 1000);
+    }
+
+    function f_next(){
+        f_initZindex(v_layers);
+        v_lIndex++;
+        if(v_lIndex == v_layers.length){
+            v_lIndex = 0;   //처음으로 되돌림
+        }
+        v_text.value = (v_lIndex+1) + "/" + v_layers.length;
+        v_layers[v_lIndex].style.zIndex = 999; //맨앞으로 끌고옴
+    }
+
+    function f_prev(){
+        f_initZindex(v_layers);
+        v_lIndex--;
+        if(v_lIndex == -1){
+            v_lIndex = v_layers.length - 1;   //끝으로 되돌림
+        }
+        v_text.value = (v_lIndex+1) + "/" + v_layers.length;
+        v_layers[v_lIndex].style.zIndex = 999; //맨앞으로 끌고옴
+    }
+</script>
+</head>
+<body>
+    <input type="button" value="<" onclick="f_prev()">
+    <input type="text" id="id_text" value="" size="10" >
+    <input type="button" value=">" onclick="f_next()">
+    <div class="wrapper">
+        <div class="panel" style="z-index:999">
+            <table border="1">
+                <tr>
+                    <td><img src="./images/도라에몽.jpg" width="100" height="100"></td>
+                    <td><img src="./images/미키마우스.jpg" width="100" height="100"></td>
+                </tr>
+                <tr>
+                    <td><img src="./images/피카츄.jpg" width="100" height="100"></td>
+                    <td><img src="./images/루피1.jpg" width="100" height="100"></td>
+                </tr>
+                <tr>
+                    <td><img src="./images/루피2.jpg" width="100" height="100"></td>
+                    <td><img src="./images/루피3.jpg" width="100" height="100"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel" style="z-index:888">
+            <table border="1">
+                <tr>
+                    <td><img src="./images/리트리버1.jpg" width="100" height="100"></td>
+                    <td><img src="./images/리트리버2.jpg" width="100" height="100"></td>
+                </tr>
+                <tr>
+                    <td><img src="./images/리트리버3.jpg" width="100" height="100"></td>
+                    <td><img src="./images/리트리버4.jpg" width="100" height="100"></td>
+                </tr>
+                <tr>
+                    <td><img src="./images/리트리버5.jpg" width="100" height="100"></td>
+                    <td><img src="./images/리트리버6.jpg" width="100" height="100"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel" style="z-index:888">
+            <table border="1">
+                <tr>
+                    <td><img src="./images/고양이1.jpg" width="100" height="100"></td>
+                    <td><img src="./images/고양이2.jpg" width="100" height="100"></td>
+                </tr>
+                <tr>
+                    <td><img src="./images/고양이3.jpg" width="100" height="100"></td>
+                    <td><img src="./images/고양이4.jpg" width="100" height="100"></td>
+                </tr>
+                <tr>
+                    <td><img src="./images/고양이5.jpg" width="100" height="100"></td>
+                    <td><img src="./images/고양이6.jpg" width="100" height="100"></td>
+                </tr>
+            </table>
+        </div>
+    </div>    
+<script>
+    
+</script>
+</body>     <!-- 시퀀스 문제때문에라도 스크립트를 바디 닫는태그 바로 위에
+                둠 위와 아래 떨어져있으면 가독성이 떨어지므로 그냥 아래로
+                다 끌어내림-->
+</html>

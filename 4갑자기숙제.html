@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #id_work{
+        color: green;
+        background-color: black;
+        font-size: 20px;
+        border: 1px solid blue;
+    }
+</style>
+</head>
+<body>
+    <div id="id_work">
+        <h2>당신의 취미는 </h2>
+        <h3>Max 3개까지만 체크하시오</h3>
+        <h3>4개째는 3개넘었다는 메세지 출력과 함께 체크안됨</h3>
+        <h3>다른거 해제하고(2개가 됨) 체크하면(3번째) 체크가 됨</h3><br>
+    </div>
+
+        자바<input type="checkbox" name="hobby" value="JAVA" onclick="f_hobby(this)">
+        자바스크립트<input type="checkbox" name="hobby" value="JS" onclick="f_hobby(this)">
+        HTML<input type="checkbox" name="hobby" value="HTML" onclick="f_hobby(this)">
+        CSS<input type="checkbox" name="hobby" value="CSS" onclick="f_hobby(this)">
+        서버<input type="checkbox" name="hobby" value="SEVER" onclick="f_hobby(this)"><br>
+    <br><br>
+<script>
+    // var v_ckboxs = document.getElementsByName("hobby");
+    var v_count = 0;
+    var v_max = 3;
+    function f_hobby(p_this) {
+        // alert(v_ckboxs[p_num].value);
+        // alert(p_this.value);
+        // alert(p_this.checked);  //체크여부 확인
+        if(p_this.checked){
+            v_count++;
+        } else{
+            v_count--;
+        }
+
+        if(v_count > v_max){
+            alert("3개 넘음");
+            p_this.checked = false;
+            v_count--;
+        }
+    }
+</script>
+</body>
+</html>

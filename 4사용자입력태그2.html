@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- radio 버튼은 name으로 그룹을 묶어주고, 그룹중엥 오직 1개만 체크가능-->
+    <!-- checked처럼 혼자 쓰여도 되는 속성은 property라고 부름-->
+    남<input type="radio" name="sungbyul" id="" value="male" checked>
+    여<input type="radio" name="sungbyul" id="" value="female">
+    <br>
+    <input type="button" value="성별확인" onclick="f_sungbyul(this)">
+    <br>
+    <br><br><h2>당신의 취미는</h2>
+    자바<input type="checkbox" name="hobby" value="JAVA">
+    자바스크립트<input type="checkbox" name="hobby" value="JS" checked disabled>
+    HTML<input type="checkbox" name="hobby" value="HTML">
+    CSS<input type="checkbox" name="hobby" value="CSS">
+    서버<input type="checkbox" name="hobby" value="SEVER"><br>
+    <input type="button" value="취미확인" onclick="f_like()">
+    <br><br>
+
+<!-- 태그와 스크립트 순서(Sequence)에 주의 해야 함.-->
+<!-- 자바 스크립트는 인터프리터(줄단위실행)방식 순서 중요-->
+    <input type="text" value="" placeholder="이름써" id="id_text"><br>
+    <input type="button" value="눌러" onclick="f_text()">
+<script>
+    // id_text.value="스크립트 초기화";
+
+    function f_sungbyul(p_this){
+        console.log("this는 누구?" + p_this);
+    }
+
+    function f_sungbyul1() {
+        var v_radios = document.getElementsByName("sungbyul");
+        console.log(v_radios);
+        for(var i=0; i<v_radios.length; i++) {
+            if(v_radios[i].checked){
+                alert("당신은 " + v_radios[i].value + "입니다.");
+                break;
+            };
+        }
+    }
+
+    function f_like(){
+        var v_hobby="";
+        var v_ckboxs = document.getElementsByName("hobby");
+        for(var i=0; i<v_ckboxs.length; i++) {
+            if(v_ckboxs[i].checked){
+                v_hobby += v_ckboxs[i].value + " ";
+                v_ckboxs[i].checked = false;
+            }
+        }
+        alert("당신의 취미는 " + v_hobby + "입니다.");
+    }
+</script>
+</body>
+</html>
