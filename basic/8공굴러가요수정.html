@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+   
+    #id_ball{
+        transform: rotate(45deg);
+        position: absolute; 
+        left: 10px;
+        top: 10px;
+        width: 100px;
+        height: 100px;
+        background-image: url("./download.jpg");
+        background-size: 100px 100px;
+        border-radius: 50px 50px;  
+    }
+
+    #id_bar{
+        position: absolute; 
+        width: 200px;
+        left: 50px;
+        height: 30px;
+        background-color: violet;
+        top: 600px;
+    }
+</style>
+</head>
+<body>
+<h1>과제는 막대가 공을 튕겨 내기</h1>
+<h1>과제는 막대기 왼쪽 오른쪽 벽속으로 안들어가깅</h1>
+<div id="id_ball"></div>
+<div id="id_bar" ></div>
+<input type="button" value="눌러줘" onclick="f_proxy()">
+<input type="button" value="멈춰" id="id_stop">
+<script>
+    var v_stop = document.querySelector("#id_stop");
+    v_stop.addEventListener("click",function(){
+        // alert("addEventListener를 이용한 이벤트");
+    })
+    v_stop.addEventListener("click",function(){
+        // alert("또다른 add이벤트리스너");
+        clearTimeout(v_timerID);
+        v_isStart = false;
+    })
+    
+    var v_isStart = false;      // 이런 변수를 flag 변수, switch변수라고 부름
+    function f_proxy(){     // Proxy 패턴이라고 불림
+        if(!v_isStart){     // 직접 제어하는 것이 어려울 때
+            v_isStart = true;
+            f_move();
+        }
+    }
+
+    var v_ball = document.querySelector("#id_ball");
+    var v_bar = document.querySelector("#id_bar");
+    var v_mvWidth=5;
+    var v_mvHeight=5;
+    var v_gackdo = 0;
+    var v_ballWidth = 100;
+    var v_timerID;
+
+    function f_move(){
+        if(!v_ball.style.left){     
+            v_ball.style.left = "10px";    
+            v_ball.style.top = "10px";
+
+            v_bar.style.left = "30px";        
+            v_bar.style.top = window.innerHeight - 80 + "px";
+            v_bar.style.height = "30px";
+        }
+        v_ball.style.left = parseInt(v_ball.style.left) + v_mvWidth + "px";
+        v_ball.style.top = parseInt(v_ball.style.top) + v_mvHeight + "px";
+
+        v_gackdo = v_gackdo + 179;
+        v_ball.style.transform = "rotate(" + v_gackdo + "deg)";
+
+      
+        var v_ballLeft = parseInt(v_ball.style.left);
+        var v_ballTop = parseInt(v_ball.style.top);
+        var v_ballRight = v_ballLeft + 100;
+        var v_ballBottom = v_ballTop + 100;
+
+        var v_barTop = parseInt(v_bar.style.top); 
+        var v_barLeft = parseInt(v_bar.style.left);
+        var v_barRight = parseInt(v_bar.style.left) + 200;      
+        
+
+        var chk1 = v_ballRight >= v_barLeft;
+        var chk2 = v_ballLeft <= v_barRight;
+        var chkResult = chk1 && chk2;
+
+
+        if(v_ballRight >= window.innerWidth-5
+            || v_ballLeft <= 0){
+            v_mvWidth = -v_mvWidth;
+        } else if( v_barLeft <= v_ballRight && v_ballRight <= v_barLeft + 5       
+            && v_ballBottom >= v_barTop){
+            v_mvWidth = -v_mvWidth;
+        } else if(v_ballLeft <= v_barRight && v_ballLeft >= v_barRight - 5        
+            && v_ballBottom >= v_barTop ){
+            v_mvWidth = -v_mvWidth;
+        }
+
+       
+        if(v_ballBottom >= window.innerHeight-5
+            || v_ballTop <= 0){
+            v_mvHeight = -v_mvHeight;
+        } else if(v_barTop <= v_ballBottom              
+            && chkResult){
+            v_mvHeight = -v_mvHeight;
+        }
+
+        v_timerID = setTimeout(f_move, 10);      
+        // clearTimeout(v_timerID); 예시: 타이머 ID
+
+    }
+
+    window.onkeydown = function(){
+        var v_barRight = parseInt(v_bar.style.left) + 200;
+        if(event.keyCode == 37){    //왼쪽 화살표
+            if(parseInt(v_bar.style.left)>0){               
+                v_bar.style.left = parseInt(v_bar.style.left) - 10 + "px";
+            }
+        }  
+        if(event.keyCode == 39){    // 오른쪽 화살표
+            if(v_barRight<=window.innerWidth-10){           
+                v_bar.style.left = parseInt(v_bar.style.left) + 10 + "px";
+            }
+        }
+    }
+</script>  
+</body>
+</html>

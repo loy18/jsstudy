@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    
+    var v_munjeSu=15;
+    var v_sunda = 5;
+    //랜덤 답 생성
+    var v_dap = [];
+    for(var i=1; i<=v_munjeSu; i++){
+        v_dap.push(Math.ceil(Math.random()*v_sunda));
+    }
+    alert(v_dap);
+    for(var j=1;j<=v_munjeSu; j++) {
+        myPrint("<h4> 문제" + j + "</h4><hr>");
+        prtRadio(j);    // 이중 for문 부담스러우면 밖으로 빼도됨
+    }
+
+    document.write("<br><input type=button value=채점>");
+    document.write("<br>맞은 갯수:<input type=text value=''><br>");
+    document.write("점수:<input type=text value=''>");
+
+
+    function myPrint(p_arg){
+        document.write(p_arg);
+    }
+
+    function prtRadio(p_arg){
+        for(var i=1; i<=v_sunda; i++) {
+            myPrint(i+"<input type=radio name=nm_mun" + p_arg + " value=" + i + " >");
+        }
+    }
+
+</script>    
+</body>
+</html>

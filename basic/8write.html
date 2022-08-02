@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="누ㅜㄹ러" onclick="f_write()">
+<script>
+    function f_write() {
+        // 문서형태가 완성된 다음에 document.write를 쓰면
+        // 기존 문서를 지우고 다시 쓰게 됨.
+        // 이것만 주의해서 사용하면 문제없음.
+        document.write("<h1>이게 뭐ㅓㅑ야</h1>");
+    }
+    // document.write -> 사용이 권장되지 않음 -> 사람들이 잘 못씀
+    /*
+    document.write("<div style='text-align:center'>");
+    for(var i=1; i<=6; i++){
+        document.write("<h" + i + ">난 최고의 프로그래머당<h" + i + ">");
+    }
+    for(var i=5; i>0; i--){
+        document.write("<h" + i + ">난 최고의 프로그래머당<h" + i + ">");
+    }
+    document.write("</div>");
+    */
+    
+    // 오늘 과제 반복문(for, while 관계없음)을 1번만 써서 구현해 봅니다
+    // 반복문이외의 조건문등은 편하게 사용해도 무방
+    document.write("<div style='text-align:center'>");
+    for(var i=1; i<=11; i++){
+        if(i <= 6){
+            document.write("<h" + i + ">난 최고의 프로그래머당<h" + i + ">");
+        } else {
+            var j = i - (i % 6 *2);
+            document.write("<h" + j + ">난 최고의 프로그래머당<h" + j + ">");
+        }
+    }
+</script>    
+</body>
+</html>

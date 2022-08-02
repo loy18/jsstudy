@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>열어 준 창</h1>
+    <textarea id="old_text" cols="30" rows="10" onkeydown="f_keyCheck()"></textarea>
+    <input type="button" id="old_btn" value="나 버튼" onclick="f_oldBtn()"><br>
+
+    <input type="button" value="새창열기" onclick="f_winOpen()">
+    <input type="button" value="새창닫기" onclick="f_winClose()">
+<script>
+    // 새창 띄우기
+    var v_newWin;
+    function f_winOpen() {
+        // 두번째 매개변수 name칸에 이름을 안주면 계속 새 탭이 열림
+        // 세번째 매개변수 사이즈에 값을주면 새로운 창이 열림
+        v_newWin = window.open("8새창.html","","width=300,height=300,left=900,top=50");
+    }
+
+    function f_winClose() {
+        v_newWin.close();
+    }
+
+    function f_oldBtn(){
+        //window와 document의 관계 -> window.document 관계
+        v_newWin.document.querySelector("#new_text").value = 
+                document.querySelector("#old_text").value;
+        v_newWin.document.querySelector("#new_btn").value = "나 태훈이얌";
+    }
+
+    function f_keyCheck() {
+        if(event.keyCode == 13){
+            f_oldBtn();
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>유투브 넣기</h1>
+    <!-- <h2>
+        구글의 정책이 동영상의 사운드는 사용자에게 불편을 줄 수 있다해서
+        영상 자동플레이를 하려면 사운드를 꺼야 함, 사운드 켜는 건 사용자 선택
+    </h2> -->
+    <input type="button" value="다음영상" onclick="f_next()"><br>
+    <br>선택하시오<br>
+    js1<input type="radio" name="nm_js" id="" onclick="f_select(0)">
+    js2<input type="radio" name="nm_js" id="" onclick="f_select(1)">
+    js3<input type="radio" name="nm_js" id="" onclick="f_select(2)">
+    js4<input type="radio" name="nm_js" id="" onclick="f_select(3)">
+
+    <select id="id_sel" onchange="f_select2(this)">
+        <option value="-1" selected>원하는 영상</option>
+        <option value="0">js1</option>
+        <option value="1">js2</option>
+        <option value="2">js3</option>
+        <option value="3">js4</option>
+    </select>
+
+    <iframe id="id_iframe" width="777" height="437" 
+     src="https://www.youtube.com/embed/KF6t61yuPCY?autoplay=1&mute=1" 
+     title="자바스크립트 기초 강좌 : 100분 완성"
+     frameborder="0" 
+     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+     allowfullscreen></iframe>
+<script>
+    
+    var v_iframe;
+    var v_select;
+    window.onload = function(){     
+        // 페이지 로딩이 끝나면 자동으로 실행
+        v_iframe = document.querySelector("#id_iframe");     // 스크립트를 위에 쓸경우 onload함수에 넣어줌
+        v_select = document.querySelector("#id_sel");
+    }
+    
+    var v_mvList = ["KF6t61yuPCY","4_WLS9Lj6n4","v67LloZ1ieI","iZjfnoF784k"];
+    var v_preUrl = "https://www.youtube.com/embed/";
+    var v_postUrl = "?autoplay=1&mute=1";
+    var v_index = 0;
+    function f_next() {
+        // iframe의 src 속성에 직접 값을 주기
+        v_iframe.src = v_preUrl + v_mvList[++v_index] + v_postUrl;
+        if(v_mvList.length-1 == v_index){
+            v_index = -1;
+        }
+    }
+
+    function f_select(p_arg){
+        v_iframe.src = v_preUrl + v_mvList[p_arg] + v_postUrl;
+    }
+
+    function f_select2(){
+        if(v_select.value == "-1"){
+            alert("눈 똑바로 뜨셈");
+            return;
+        }
+        v_iframe.src = v_preUrl + v_mvList[v_select.value] + v_postUrl;
+    }
+
+</script>
+</body>
+</html>

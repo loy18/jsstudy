@@ -5,7 +5,7 @@
     <title>Document</title>
 <style>
     .wrapper{
-        position: relative; /* static을 만들어진 뒤 이동 */
+        position: relative; 
         width: 220px;
         height: 340px;
         left: 100px;
@@ -14,21 +14,15 @@
     }
 
     .panel{
-        position:absolute;  /* 부모(relative) 왼쪽 모서리 기준으로 움직임 */
+        position:absolute;  
         border: 1px solid blue;
-        /*
-        left: 100px;
-        top: 100px; 
-        */
     }
 </style>
 <script>
-    // 오늘의 과제
-    var v_layers;   // 아직 해당 태그가 안 만들어져서 전역변수 선언만함
+    var v_layers;  
     var v_text;     
 
-    //window.onload 이벤트 자동 발생 시점은 html태그가 모두 해석이 끝나고
-    //페이지 내의 이미지 로딩까지 끝나면 발생.
+    
     window.onload = function() {
         v_layers = document.querySelectorAll(".panel");
         v_text = document.querySelector("#id_text");
@@ -46,27 +40,27 @@
     
     function f_nextAuto(){
         f_next();
-        setTimeout(f_nextAuto, 1000);
+        setTimeout(f_nextAuto, 5000);
     }
 
     function f_next(){
         f_initZindex(v_layers);
         v_lIndex++;
         if(v_lIndex == v_layers.length){
-            v_lIndex = 0;   //처음으로 되돌림
+            v_lIndex = 0;   
         }
         v_text.value = (v_lIndex+1) + "/" + v_layers.length;
-        v_layers[v_lIndex].style.zIndex = 999; //맨앞으로 끌고옴
+        v_layers[v_lIndex].style.zIndex = 999; 
     }
 
     function f_prev(){
         f_initZindex(v_layers);
         v_lIndex--;
         if(v_lIndex == -1){
-            v_lIndex = v_layers.length - 1;   //끝으로 되돌림
+            v_lIndex = v_layers.length - 1;  
         }
         v_text.value = (v_lIndex+1) + "/" + v_layers.length;
-        v_layers[v_lIndex].style.zIndex = 999; //맨앞으로 끌고옴
+        v_layers[v_lIndex].style.zIndex = 999; 
     }
 </script>
 </head>
@@ -78,7 +72,7 @@
         <div class="panel" style="z-index:999">
             <table border="1">
                 <tr>
-                    <td><img src="./images/도라에몽.jpg" width="100" height="100"></td>
+                    <td><a href="http://daum.net"></a><img src="./images/도라에몽.jpg" width="100" height="100"></td>
                     <td><img src="./images/미키마우스.jpg" width="100" height="100"></td>
                 </tr>
                 <tr>
@@ -127,7 +121,5 @@
 <script>
     
 </script>
-</body>     <!-- 시퀀스 문제때문에라도 스크립트를 바디 닫는태그 바로 위에
-                둠 하지만 이와 같이 변경하면 스크립트 코드가 위와 아래 떨어져있으면
-                가독성이 떨어지므로 그냥 아래로 다 끌어내림-->
+</body>     
 </html>
