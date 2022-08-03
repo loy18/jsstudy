@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script src="./5mylib.js"></script>
+</head>
+<body>
+    <h1>로또번호 만들기, 중복체크 로직은 중요함</h1>    
+    <input type="button" value="번호 생성" onclick="f_lotto()">
+    <div id="id_disp" style="border: 1px solid pink"></div>
+<script>
+    var v_disp = document.querySelector("#id_disp");
+
+    // 중복을 막기위해
+    // 처음 결과를 얻기 위해 짠 내용을 다시 깔끔하게
+    // 정리하는 것을 refactoring이라고 함
+    // 실제로는 정리하는 중에 코드가 더 깔끔해지고, 성능이 좋아지는 부분이
+    // 있어서 refactoring이라고 부름
+
+    // 배열의 indexOf 메서드와 같은 형식
+    function f_repeat(p_arr, p_val){
+        for( i=0; i<p_arr.length; i++){
+            if(p_arr[i] == p_val){
+                return i;
+            }
+        }
+        return -1;
+        //refactoring을 시도했더니, 의외로 소스가 더 간단해짐
+    }
+    
+    function f_lotto(){
+        count++;
+        var v_lottoNums = [];
+        for(;"몇번만에 6개가 될지 알수없음";){ 
+            if(v_lottoNums.length == 6){
+                v_disp.innerHTML += "<h1>"+v_lottoNums+"<h1>";
+                break;
+            }
+            var v_ranNum = f_ranNum(1,45);
+
+            //중복 체크
+            if(f_repeat(v_lottoNums,v_ranNum) == -1){
+                v_lottoNums.push(v_ranNum);
+            }
+        }
+    }
+</script>
+</body>
+</html>

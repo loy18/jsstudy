@@ -27,6 +27,9 @@
     
     // 오늘 과제 반복문(for, while 관계없음)을 1번만 써서 구현해 봅니다
     // 반복문이외의 조건문등은 편하게 사용해도 무방
+
+    /*
+        나의 답
     document.write("<div style='text-align:center'>");
     for(var i=1; i<=11; i++){
         if(i <= 6){
@@ -34,6 +37,24 @@
         } else {
             var j = i - (i % 6 *2);
             document.write("<h" + j + ">난 최고의 프로그래머당<h" + j + ">");
+        }
+    }
+    */
+    
+    /*
+        선생님의 답
+    */
+    var v_direction = true;
+    document.write("<div style='text-align:center'>");
+    for(var i=1;1<=i && i<=6;){
+        console.log("체크:" + i);
+        document.write("<h"+i+">난 최고의 프로그래머당<h"+i+">");
+        if(i==6){ v_direction = false; }
+
+        if(v_direction){ 
+            i++; 
+        }else{ 
+            i--; 
         }
     }
 </script>    
