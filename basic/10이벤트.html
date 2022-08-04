@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{
+        border: 1px solid black;
+    }
+</style>
+</head>
+<body>
+<!--
+    이벤트엔 사용자이벤트, 시스템이벤트 등이 있음
+    브라우저마다 조금씩 다른데 지원하는 이벤트가 거의 1000개 이상에 달함
+    하지만 쓰는 건 그렇게 많지 않아서 완전 다행
+-->    
+    <div style="width: 100px;height: 100px;" onmouseover="f_long(this)"
+                                    onmouseout="f_longStop()">늘어나라</div>
+    <div style="width: 100px;height: 100px; display:inline-block"
+             onmouseover="f_tall(this)" onmouseout="f_tallStop()">커져라</div>
+    <div style="width: 100px;height: 100px; display:inline-block"
+             onmouseover="f_wide(this)" onmouseout="f_wideStop()">넓어져라</div>
+<script>
+    var v_longTimer;
+    var v_tallTimer;
+
+    function f_long(p_div){
+        p_div.style.width = parseInt(p_div.style.width) + 10 + "px";
+        v_longTimer = setTimeout(f_long,100,p_div);
+    }
+
+    function f_longStop(){
+        clearTimeout(v_longTimer);
+    }
+
+    function f_tall(p_div){
+        p_div.style.height = parseInt(p_div.style.height) + 10 + "px";
+        v_tallTimer = setTimeout(f_tall,100,p_div);
+    }
+
+    function f_tallStop(){
+        clearTimeout(v_tallTimer);
+    }
+
+    function f_wide(p_div){
+        p_div.style.width = parseInt(p_div.style.width) + 10 + "px";
+        p_div.style.height = parseInt(p_div.style.height) + 10 + "px";
+        v_longTimer = setTimeout(f_long,100,p_div);
+        v_tallTimer = setTimeout(f_tall,100,p_div);
+    }
+
+    function f_wideStop(){
+        f_longStop();
+        f_tallStop();
+    }
+    // 특별한 반복문 for in문 객체의 속성 리스트를 읽어올 수 있음
+    // 제공되는 속성을 확인할 수 있음
+    /*
+    for(var v_attr in document){
+        document.write("<h4>속성명:"+v_attr+" "+ document[v_attr] + "</h4>")
+    }
+    */
+    
+    var v_myObj = {
+        name:"김태훈",
+        age:function(){
+            return 36 % 10;
+        },
+        habit:"잠자기",
+        merit:"자는데 안 쓰러짐"
+    }
+
+    for(var v_merong in v_myObj){
+        document.write("<h2>" + v_merong + " ");
+        document.write( v_myObj[v_merong] + "</h2>");
+    }
+</script>
+</body>
+</html>

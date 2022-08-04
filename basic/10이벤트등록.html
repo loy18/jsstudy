@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    div{
+        border: 1px solid black;
+    }
+    
+    #wrapper {
+        border: 1px solid blue;
+    }
+</style>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="aaa">김현석</div>    
+        <div class="aaa">오재경</div>    
+        <div class="aaa">박관우</div>    
+        <div class="aaa">김효정</div>
+    </div>
+<script>
+    // class=aaa 인 것 모두에게 이벤트 등록하기
+    var v_aaas = document.querySelectorAll(".aaa")
+    for(var i=0; i<v_aaas.length; i++) {
+        v_aaas[i].addEventListener("click", function(){
+            alert("꾸욱");
+        });
+    }
+
+    document.querySelector("#wrapper").innerHTML += "<div class='aaa'>윤다영</div>";
+</script>
+</body>
+</html>

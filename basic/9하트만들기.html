@@ -76,15 +76,17 @@
     var v_gak = 0;
     var v_mvGak = 5;
     function f_rotate(){
-        if(v_gak >= 45 || v_gak <= -45){
+        if(v_gak <= -45 || 45 <= v_gak){
             v_mvGak = -v_mvGak;
         }
         v_gak = v_gak + v_mvGak;
         v_wrapper.style.transform = 'rotate(' + v_gak + 'deg)';
         setTimeout(f_rotate,50);
     }
-
+ 
     function f_speedUp(){
+        f_rotate();
+        f_rotate();
         f_rotate();
     }
 

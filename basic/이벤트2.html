@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div style="border: 1px solid black; display: inline-block;"
+             onmouseover="f_over(this)" onmouseout="f_out(this)">
+        <div>어디가</div>
+        <div style="display: none; border: 1px solid pink">
+            <a href="http://naver.com">네이버</a><br>
+            <a href="http://daum.net">다음</a><br>
+            <a href="http://www.ddit.or.kr">대덕</a><br>
+            <a href="http://youtube.com">유투브</a><br>
+        </div>
+    </div>
+<script>
+    function f_over(p_div){
+        p_div.children[1].style.display = "block";
+        // p_div.children[1].style.visibility = "visible";
+    }
+    
+    function f_out(p_div){
+        // display = none은 내용, 공간 둘다 안보임
+        p_div.children[1].style.display = "none";
+
+        // visibility 는 내용은 안보이지만 공간을 차지함.
+        // p_div.children[1].style.visibility = "hidden";
+    }
+</script>
+</body>
+</html>

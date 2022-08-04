@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    .child{
+        border: 1px solid green;
+        font-size: 2em;     /* 기본 사이즈의 2배 */
+    }
+
+    .merong{
+        font-size: 3em;
+        color: brown;
+    }
+</style>
+</head>
+<body>
+    <div id="id_par">
+        <div class="child">박종환</div>
+        <div class="child">김강산</div>
+        <div class="child">김연두</div>
+        <div class="child" id="id_sonja">
+            <h1>문주는 최고의 프로그램</h1>
+        </div>
+        <div class="child">윤동기</div>
+    </div>    
+</body>
+<script>
+    /*
+    document.createElement
+    appendChild
+    removeChild
+    setAttribute("속성명","값")
+    children
+    parentElement
+    CloneNode(true) true 있는 깊은 복사만 웹응용 어플리케이션에 필요
+                        잘쓰면 굉장히 편함, 이벤트처리 잘 못하면 어려움
+                        
+    */
+    // var v_childs = document.querySelectorAll(".child");
+    var v_pat = document.querySelector("#id_par");
+    var v_sonja = document.querySelector("#id_sonja");
+    console.log("원본:",v_pat);
+    var v_copy = v_pat.cloneNode(true);  // 해당 Element 복사(얕은복사/깊은복사)
+    console.log("복사본:",v_copy);
+
+    var v_childs = v_pat.children;
+    // v_childs[2].class = "merong";   //class 키워드가 예약어임
+    v_childs[1].setAttribute("class","merong");
+
+    // 삭제 remove 
+    // v_pat.removeChild(v_childs[1]);
+
+    // 부모에서 자식선택
+    // var v_pjh = v_pat.children[0];
+
+    // 자식에서 부모선택
+    // v_pjh.parentElement.style.border="10px dashed red";
+    // v_sonja.parentElement.parentElement.style.border="30px solid green";
+
+</script>
+</html>

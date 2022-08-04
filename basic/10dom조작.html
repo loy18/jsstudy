@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    #id_disp{
+        border: 1px solid green;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script src="./5mylib.js"></script>
+</head>
+<body>
+    <!-- DOM    Document Object Model 자주 사용하는 말 -->
+    <input type="button" value="뚜가" id="id_add">
+    <input type="button" value="이미지 넣기" id="id_img">
+    <input type="button" value="테스트" id="id_test"><br>
+    <div id="id_disp"></div>
+    <div id="id_merong" style="border:2px solid red"></div>
+<script>
+    // querySelector, querySelectorAll DOM Search 메서드
+    // document.write("<h1>난 최고의 프로그래머</h1>");
+    // DOM Element(요소) 생성
+    var v_add = document.querySelector("#id_add");
+    var v_img = document.querySelector("#id_img");
+    var v_test = document.querySelector("#id_test");
+    var v_disp = document.querySelector("#id_disp");
+    var v_merong = document.querySelector("#id_merong");
+    var v_index = 1;
+
+    v_test.onclick = function(){
+        var v_naver = document.createElement("a");
+        v_naver.href = "https://www.naver.com/";
+        v_naver.innerHTML = "네이버 ";
+        v_merong.appendChild(v_naver);
+    }
+
+    v_img.onclick = function(){
+        
+        var v_img = document.createElement("img");
+        // v_img.src = "./images/리트리버" + v_index + ".jpg";
+        v_img.setAttribute("src","./images/리트리버" + v_index + ".jpg");
+        // v_img.width = 100;
+        v_img.setAttribute("width","100");
+        // v_img.height = 100;
+        v_img.setAttribute("height","100");
+        v_index++;
+        if(v_index >= 7) v_index = 1;
+        v_disp.appendChild(v_img);
+        
+        // 위 방식과 비교해서 상황상 더 유리한 것 사용
+        // table처럼 만들때 생성해야할 태그가 많을 때는 문자열 더하기와
+        // innerHTML 속성을 이용하는 경우가 많음
+        /*
+        var v_str = "<img src='./images/리트리버" + v_index + ".jpg' width=100 height=100</img>";
+        v_disp.innerHTML += v_str;
+        v_index++;
+        if(v_index >= 7) v_index=1;
+        */
+    }
+
+    function f_rgbRanColor(){
+        return "rgb(" + f_ranNum(0,255) + ","
+                        +f_ranNum(0,255) + ","
+                        +f_ranNum(0,255) + ")";
+    }
+
+    v_add.addEventListener("click", function() {
+        var v_h1 = document.createElement("h1"); //h1 태그 생성(메모리에)
+        v_h1.innerHTML = "난 최고의 프로그래마" + v_index;
+        v_h1.style.color = f_rgbRanColor();
+        v_h1.style.backgroundColor= f_rgbRanColor();
+        document.body.appendChild(v_h1);
+        v_index++;
+    });
+
+</script>
+</body>
+</html>
