@@ -14,14 +14,16 @@
 </style>
 </head>
 <body>
-    <div id="wrapper">
+    <div id="wrapper" onclick="f_what()">
         <div class="aaa">김현석</div>    
         <div class="aaa">오재경</div>    
         <div class="aaa">박관우</div>    
         <div class="aaa">김효정</div>
     </div>
 <script>
-
+    function f_what(){
+        alert("삼계탕 공짜로 먹음");
+    }
     
     // class=aaa 인 것 모두에게 이벤트 등록하기
     var v_aaas = document.querySelectorAll(".aaa")
